@@ -1,0 +1,131 @@
+<div id="header">
+  <div class="bar-1 hidden-xs">
+    <div class="container text-right">
+      <ul>
+        <li>
+          <%= link_to 'https://blog.afrikrea.com' do %>
+            Blog
+          <% end %>
+        </li>
+        <li>
+          <%= link_to "https://#{I18n.locale.to_s == 'fr' ? 'aide' :'help'}.afrikrea.com" do %>
+            <%= i 'question-circle' %> <%= t '.buyers_help' %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to shop_creation_url(subdomain: "www"), id: 'btn-sell', class: '' do %>
+            <%= i 'caret-right' %> <%= t '.start_selling' %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to '#', data: { toggle: 'modal', target: '#regional-settings-modal' }, class: 'heading-language-link', rel: 'nofollow' do %>
+            <span class="<%= 'strong' if current_locale.to_s == 'en' %>">EN</span> | <span class="<%= 'strong' if current_locale.to_s == 'fr' %>">FR</span>
+          <% end %>
+        </li>
+
+        <li class="pull-left text-left">
+          <%= link_to 'https://www.facebook.com/afrikrea' do %>
+            <%= i 'facebook' %>
+          <% end %>
+        </li>
+        <li class="pull-left text-left">
+          <%= link_to 'https://twitter.com/Afrikrea' do %>
+            <%= i 'twitter' %>
+          <% end %>
+        </li>
+        <li class="pull-left text-left">
+          <%= link_to 'https://instagram.com/afrikrea' do %>
+            <%= i 'instagram' %>
+          <% end %>
+        </li>
+        <li class="pull-left text-left">
+          <%= link_to 'https://www.pinterest.com/afrikrea' do %>
+            <%= i 'pinterest' %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bar">
+    <div class="container">
+      <div class="brand">
+        <%= link_to image_tag('logo/afrikrea-desktop.png', class: 'logo'), lroot_url(locale: I18n.locale, subdomain: 'www'), class: 'hidden-xs' %>
+        <%= link_to image_tag('logo/afrikrea-mobile.png', class: 'logo'), lroot_url(locale: I18n.locale, subdomain: 'www'), class: 'visible-xs-inline-block' %>
+      </div>
+
+      <div class="nav">
+        <ul class="nav-left">
+          <li>
+            <%= link_to '#', id: 'btn-nav-panel', class: 'btn btn-icon btn-sm btn-simple visible-xs-inline-block', data: { toggle: 'offcanvas', placement: 'left', target: '#nav-panel' } do %>
+              <%= i @nav_menu_mobile_icon.blank? ? 'bars' : @nav_menu_mobile_icon %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to categories_url, id: 'top-search-link', class: 'btn btn-icon btn-sm btn-simple visible-xs-inline-block' do %>
+              <i class="fa fa-search"></i>
+            <% end %>
+          </li>
+          <li id="top-search-block" class="hidden-xs">
+            <%= form_tag categories_url(subdomain: "www"), method: :get, id: 'search-form', class: 'form-inline', enforce_utf8: false do %>
+              <div class="input-group input-group-sm">
+                <%= text_field_tag 'q', params[:q], class: 'form-control border-input search-typeahead', data: { 'autocomplete-suggestions' => autocomplete_suggestions_path, 'autocomplete-products' => autocomplete_products_path, 'autocomplete-shops' => autocomplete_shops_path, 'autocomplete-categories' => autocomplete_categories_path } %>
+                <span class="input-group-btn">
+                  <%= button_tag name: nil, class: 'btn btn-sm btn-default' do %>
+                    <%= t '.search' %>
+                  <% end %>
+                </span>
+              </div>
+              <%#= link_to i('times'), '#', id: 'top-search-close', class: 'text-muted visible-xs-inline-block' %>
+            <% end %>
+          </li>
+          <!--li class="hidden-xs">
+            <%= link_to shop_creation_url(subdomain: "www"), id: 'btn-sell', class: 'btn btn-sm btn-success btn-fill btn-move--right' do %>
+              <%= t '.start_selling' %> <i class="fa fa-angle-right"></i>
+            <% end %>
+          </li-->
+        </ul>
+
+        <ul class="nav-right">
+          <% unless user_signed_in? %>
+            <li>
+              <% if %(www).include?(current_subdomain) %>
+                <%= link_to '#account-or-signin-signup', id: 'btn-account', class: 'btn btn-icon btn-sm btn-default btn-simple', data: { toggle: 'modal', target: '#auth-modal' } do %>
+                  <%= image_tag('icons/user-24x24.png') %>
+                  <span class="hidden-xs" style="font-size: 12px;color: #333;">
+                    <%= I18n.locale.to_s == 'en' ? ' Account' : ' Mon compte' %>
+                  </span>
+                <% end %>
+              <% else %>
+                <%= link_to new_authentication_session_url(subdomain: "www", locale: locale), id: 'btn-account', class: 'btn btn-icon btn-sm btn-default btn-simple' do %>
+                  <%= image_tag('icons/user-24x24.png') %>
+                  <span class="hidden-xs" style="font-size: 12px;color: #333;">
+                    <%= I18n.locale.to_s == 'en' ? ' Account' : ' Mon compte' %>
+                  </span>
+                <% end %>
+              <% end %>
+            </li>
+          <% else %>
+            <li class="dropdown">
+              <%= render 'layouts/account_menu' %>
+            </li>
+          <% end %>
+          <li>
+            <%= link_to '#', id: 'btn-favorites-panel', class: 'btn btn-icon btn-sm btn-default btn-simple', data: { toggle: 'offcanvas', placement: 'right', target: '#favorites-panel' } do %>
+              <%= image_tag('icons/fav-outline-24x24.png') %> <span class="label notification-bubble"></span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to '#', id: 'btn-cart-panel', class: 'btn btn-icon btn-sm btn-default btn-simple', data: { toggle: 'offcanvas', placement: 'right', target: '#cart-panel' } do %>
+              <%#= i 'shopping-basket' %>
+              <%= image_tag('icons/basket-24x24.png') %>
+              <span class="label notification-bubble"><%= current_cart.items_count if current_cart && current_cart.items_count > 0 %></span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <%= render 'layouts/menu' %>
+</div>
