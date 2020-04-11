@@ -3,12 +3,12 @@
     <div class="container text-right">
       <ul>
         <li>
-          <%= link_to 'https://blog.afrikrea.com' do %>
+          <%= link_to 'gendolBlogPage' do %>
             Blog
           <% end %>
         </li>
         <li>
-          <%= link_to "https://#{I18n.locale.to_s == 'fr' ? 'aide' :'help'}.afrikrea.com" do %>
+          <%= link_to 'gendolHelpPage' do %>
             <%= i 'question-circle' %> <%= t '.buyers_help' %>
           <% end %>
         </li>
