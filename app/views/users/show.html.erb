@@ -16,8 +16,13 @@
 </p>
 
 <p>
-  <strong>Parent name:</strong>
-  <%= @user.parent_name %>
+  <strong>Birth date:</strong>
+  <%= @user.birth_date %>
+</p>
+
+<p>
+  <strong>Guardian:</strong>
+  <%= @user.guardian %>
 </p>
 
 <p>
@@ -26,8 +31,28 @@
 </p>
 
 <p>
+  <strong>Password:</strong>
+  <%= @user.password %>
+</p>
+
+<p>
+  <strong>Encrypted password:</strong>
+  <%= @user.encrypted_password %>
+</p>
+
+<p>
   <strong>Contact:</strong>
   <%= @user.contact %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @user.created_at %>
+</p>
+
+<p>
+  <strong>Deleted at:</strong>
+  <%= @user.deleted_at %>
 </p>
 
 <p>
@@ -43,16 +68,6 @@
 <p>
   <strong>Address:</strong>
   <%= @user.address %>
-</p>
-
-<p>
-  <strong>Birth date:</strong>
-  <%= @user.birth_date %>
-</p>
-
-<p>
-  <strong>Account type:</strong>
-  <%= @user.account_type %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

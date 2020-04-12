@@ -4,14 +4,17 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :first_name
       t.string :last_name
       t.string :gender
-      t.string :parent_name
+      t.date :birth_date
+      t.string :guardian
       t.string :email
+      t.string :password
+      t.string :encrypted_password
       t.string :contact
+      t.datetime :created_at
+      t.datetime :deleted_at
       t.datetime :last_sign_in
       t.datetime :current_sign_in
       t.string :address
-      t.date :birth_date
-      t.string :account_type
 
       t.timestamps
     end
