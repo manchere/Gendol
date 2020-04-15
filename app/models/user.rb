@@ -1,5 +1,6 @@
 class User < ApplicationRecord
 
+  before_save { self.email = email.downcase }
   validates :first_name, presence: true
   validates :last_name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -9,6 +10,7 @@ class User < ApplicationRecord
   validates :encrypted_password
   validates :tel_number
   
+  has_secure_password
 
   attr_accessor :first_name, :other_name, :last_name, :email, :guardian,
                 :email, :tel_number, :encrypted_password, :password, :
