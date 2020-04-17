@@ -3,3 +3,34 @@
 <%= render 'form', user: @user %>
 
 <%= link_to 'Back', users_path %>
+
+<%provide(:title, 'Registration')%>
+
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+<%= form_with(model: @user, local: true) do |f| %>
+<%= f.label :first_name %>
+<%= f.text_field :first_name %>
+<%= f.label :other_name %>
+<%= f.text_field :other_name %>
+<%= f.label :last_name %>
+<%= f.text_field :last_name %>
+<%= f.label :guardian %>
+<%= f.text_field :guardian %>
+<%= f.label :gender %>
+<%= f.radio_button :gender, :male %>Male
+<%= f.radio_button :gender, :female %>Female
+<%= f.label :birth_date %>
+<%= f.date :birth_date %>
+<%= f.label :email %>
+<%= f.email_field :email %>
+<%= f.label :email %>
+<%= f.email_field :email %>
+<%= f.label :password %>
+<%= f.password_field :password %>
+<%= f.label :password_confirmation, "Confirmation" %>
+<%= f.password_field :password_confirmation %>
+<%= f.submit "Register", class: "btn btn-primary" %>
+<% end %>
+</div>
+</div>
