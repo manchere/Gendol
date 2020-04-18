@@ -12,12 +12,12 @@ class User < ApplicationRecord
   attr_accessor :first_name, :other_name, :last_name, :guardian,
                 :email, :tel_number, :password
 
-  def initialize attribute = {}
-    @firstname = attribute[:first_name]
-    @lastname  =  attribute[:last_name]
-    @email = attribute[:email]
-    @password = attribute[:password]
-  end
+  # def initialize attribute = {}
+  #   @firstname = attribute[:first_name]
+  #   @lastname  =  attribute[:last_name]
+  #   @email = attribute[:email]
+  #   @password = attribute[:password]
+  # end
 
 
   private
